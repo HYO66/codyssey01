@@ -33,7 +33,7 @@
 상세 로그: [docs/logs/terminal.md](./docs/logs/terminal.md)
 
 실행한 주요 명령:
-```powershell
+```powershell```
 Get-Location
 Get-ChildItem -Force
 mkdir cli-test
@@ -46,12 +46,14 @@ Move-Item copy.txt renamed.txt
 Set-Location ..
 Remove-Item cli-test -Recurse -Force
 
+---
+
 2.권한 실습 로그
 
 상세 로그: [docs/logs/terminal.md](./docs/logs/terminal.md)
 
 실행한 주요 명령:
-```Ubuntu
+```Ubuntu```
 mkdir -p ~/permission-test
 cd ~/permission-test
 
@@ -74,24 +76,28 @@ x = 실행
 644 = 소유자 rw-, 그룹 r--, 기타 r--
 755 = 소유자 rwx, 그룹 r-x, 기타 r-x
 
+---
+
 3.Docker 설치/점검 로그
 
 상세 로그: [docs/logs/docker.md](./docs/logs/docker.md)
 
 실행한 주요 명령:
-```powershell
+```powershell```
 docker --version
 docker info
 docker images
 docker ps
 docker ps -a
 
+---
+
 4.hello-world / ubuntu 실습 로그
 
 상세 로그: [docs/logs/terminal.md](./docs/logs/terminal.md)
 
 실행한 주요 명령:
-```powershell
+```powershell```
 docker run --name hello-test hello-world
 docker run -it --name ubuntu-test ubuntu bash
 ls
@@ -103,18 +109,20 @@ attach: 실행 중인 컨테이너의 기본 프로세스에 직접 붙음
 exec: 실행 중인 컨테이너 안에서 새 명령을 실행함
 실습에서는 exec가 관리와 디버깅에 더 편리했음
 
+---
+
 5.Dockerfile 기반 커스텀 이미지 제작 / 포트매핑 접속 확인
 
 상세 로그: [docs/logs/terminal.md](./docs/logs/terminal.md)
 
 실행한 주요 명령:
-```powershell
+```powershell```
 docker build -t my-nginx:1.0 .
 docker run -d --name my-nginx-web -p 8080:80 my-nginx:1.0
 docker ps
 docker logs my-nginx-web
 http://localhost:8080
-![포트매핑](./docs/images/포트매핑.png)
+![포트 매핑 결과](./docs/images/포트매핑.png)
 
 *포트충돌 문제 해결
  >처음에는 아래 명령으로 실행을 시도.
@@ -130,13 +138,14 @@ http://localhost:8080
   docker rm -f my-nginx-web
   docker run -d --name my-nginx-web -p 8080:80 my-nginx:1.0
 
+---
 
 6.바인드 마운트 반영 확인
 
 상세 로그: [docs/logs/terminal.md](./docs/logs/terminal.md)
 
 실행한 주요 명령:
-```powershell
+```powershell```
 docker run -d --name bind-test -p 8082:80 -v ${PWD}\app:/usr/share/nginx/html nginx
 
 *컨테이너 중복 및 포트충돌 문제 해결
@@ -154,13 +163,14 @@ docker run -d --name bind-test -p 8082:80 -v ${PWD}\app:/usr/share/nginx/html ng
  >해결책: 이번엔 포트를 바꿔서 해결했다.
   docker run -d --name bind-test -p 8082:80 -v ${PWD}\app:/usr/share/nginx/html nginx
 
+---
 
 7.Docker 볼륨 영속성 확인
 
 상세 로그: [docs/logs/terminal.md](./docs/logs/terminal.md)
 
 실행한 주요 명령: 
-```powershell
+```powershell```
 docker volume create mydata
 docker run -d --name vol-test -v mydata:/data ubuntu sleep infinity
 docker exec -it vol-test bash -lc "echo hello-volume > /data/hello.txt && cat /data/hello.txt"
@@ -168,21 +178,25 @@ docker rm -f vol-test
 docker run -d --name vol-test2 -v mydata:/data ubuntu sleep infinity
 docker exec -it vol-test2 bash -lc "cat /data/hello.txt"
 
+---
+
 8.Git연동 확인
 
 상세 로그: [docs/logs/terminal.md](./docs/logs/terminal.md)
 
 실행한 주요 명령:
-```powershell
+```powershell```
 git config --global user.name
 git config --global user.email
 git config --global init.defaultBranch
 git config --list
 
+---
+
 9.GitHub/VSCode 연동
 
-(./docs/images/github저장소연동.png)
-(./docs/images/vscode연동.png)
+![GitHub 저장소 연동](./docs/images/github저장소연동.png)
+![vscode연동](./docs/images/vscode연동.png)
 
 
 **트러블 슈팅
