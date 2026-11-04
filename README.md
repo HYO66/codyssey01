@@ -30,7 +30,7 @@
 
 1.터미널 기본 조작 로그
 
-상세 로그: [docs/logs/terminal.md]
+상세 로그: [docs/logs/terminal.md](./docs/logs/terminal.md)
 
 실행한 주요 명령:
 ```powershell
@@ -48,7 +48,7 @@ Remove-Item cli-test -Recurse -Force
 
 2.권한 실습 로그
 
-상세 로그: [docs/logs/terminal.md]
+상세 로그: [docs/logs/terminal.md](./docs/logs/terminal.md)
 
 실행한 주요 명령:
 ```Ubuntu
@@ -76,7 +76,7 @@ x = 실행
 
 3.Docker 설치/점검 로그
 
-상세 로그: [docs/logs/docker.md]
+상세 로그: [docs/logs/docker.md](./docs/logs/docker.md)
 
 실행한 주요 명령:
 ```powershell
@@ -88,7 +88,7 @@ docker ps -a
 
 4.hello-world / ubuntu 실습 로그
 
-상세 로그: [docs/logs/terminal.md]
+상세 로그: [docs/logs/terminal.md](./docs/logs/terminal.md)
 
 실행한 주요 명령:
 ```powershell
@@ -105,7 +105,7 @@ exec: 실행 중인 컨테이너 안에서 새 명령을 실행함
 
 5.Dockerfile 기반 커스텀 이미지 제작 / 포트매핑 접속 확인
 
-상세 로그: [docs/logs/terminal.md]
+상세 로그: [docs/logs/terminal.md](./docs/logs/terminal.md)
 
 실행한 주요 명령:
 ```powershell
@@ -113,7 +113,8 @@ docker build -t my-nginx:1.0 .
 docker run -d --name my-nginx-web -p 8080:80 my-nginx:1.0
 docker ps
 docker logs my-nginx-web
-http://localhost:8080[docs/images/포트매핑.png]
+http://localhost:8080
+![포트매핑](./docs/images/포트매핑.png)
 
 *포트충돌 문제 해결
  >처음에는 아래 명령으로 실행을 시도.
@@ -132,7 +133,7 @@ http://localhost:8080[docs/images/포트매핑.png]
 
 6.바인드 마운트 반영 확인
 
-상세 로그: [docs/logs/terminal.md]
+상세 로그: [docs/logs/terminal.md](./docs/logs/terminal.md)
 
 실행한 주요 명령:
 ```powershell
@@ -156,7 +157,7 @@ docker run -d --name bind-test -p 8082:80 -v ${PWD}\app:/usr/share/nginx/html ng
 
 7.Docker 볼륨 영속성 확인
 
-상세 로그: [docs/logs/terminal.md]
+상세 로그: [docs/logs/terminal.md](./docs/logs/terminal.md)
 
 실행한 주요 명령: 
 ```powershell
@@ -169,7 +170,7 @@ docker exec -it vol-test2 bash -lc "cat /data/hello.txt"
 
 8.Git연동 확인
 
-상세 로그: [docs/logs/terminal.md]
+상세 로그: [docs/logs/terminal.md](./docs/logs/terminal.md)
 
 실행한 주요 명령:
 ```powershell
@@ -180,8 +181,9 @@ git config --list
 
 9.GitHub/VSCode 연동
 
-[docs/images/github저장소연동.png]
-[docs/images/vscode연동.png]
+(./docs/images/github저장소연동.png)
+(./docs/images/vscode연동.png)
+
 
 **트러블 슈팅
 
