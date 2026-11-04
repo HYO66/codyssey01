@@ -228,6 +228,36 @@ CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS   
 d954290deab8   my-nginx:1.0   "/docker-entrypoint.…"   8 minutes ago   Up 8 minutes   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   my-nginx-web
 c6be1ad38fe6   ubuntu         "sleep infinity"         4 hours ago     Up 4 hours                                               vol-test2
 
+**변경/재빌드
+
+PS C:\Users\User\Desktop\codyssey01> docker rm -f my-nginx-container
+my-nginx-container
+PS C:\Users\User\Desktop\codyssey01> docker run -d -p 8082:80 --name my-nginx-container my-nginx:1.0
+4d4ca523318080a9e4294d010bb76b7bd04b6bcd419c486975012e72b75443eb
+PS C:\Users\User\Desktop\codyssey01> docker build -t my-nginx:1.0 .
+[+] Building 1.9s (7/7) FINISHED                                                                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 108B                                                                               0.0s
+ => [internal] load metadata for docker.io/library/nginx:alpine                                                    1.3s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load build context                                                                                  0.0s
+ => => transferring context: 400B                                                                                  0.0s
+ => CACHED [1/2] FROM docker.io/library/nginx:alpine@sha256:785835ea65db4bba6f021acc0f3be91b0fef76a53fe41f8588c66  0.0s
+ => => resolve docker.io/library/nginx:alpine@sha256:785835ea65db4bba6f021acc0f3be91b0fef76a53fe41f8588c6698d2aed  0.0s
+ => [2/2] COPY app/index.html /usr/share/nginx/html/index.html                                                     0.0s
+ => exporting to image                                                                                             0.3s
+ => => exporting layers                                                                                            0.1s
+ => => exporting manifest sha256:c292c768b5978afaf9887b0cf1c8e2db88d7ffbbdf7ab36334858eb0ce0022cb                  0.0s
+ => => exporting config sha256:68f5f9f48e0c0532ca28e668571921ef9d073ce98b2fa21f7a426312fefe327a                    0.0s
+ => => exporting attestation manifest sha256:47a18ae7bac6b5636892d6a9f075f5d6ca734171c7b7e6a42c8bdbf97cb0f63f      0.0s
+ => => exporting manifest list sha256:8043ff2cffbcbed50d7de190ed315d22c29541b8de3e1666c57f4aff94608ad5             0.0s
+ => => naming to docker.io/library/my-nginx:1.0                                                                    0.0s
+ => => unpacking to docker.io/library/my-nginx:1.0         
+
+Dockerfile 수정 후 이미지를 다시 빌드했다.
+기존 컨테이너를 제거하고 새 이미지로 다시 실행했다.
+
 ## 바인드 마운트 반영 확인
 
 PS C:\Users\User\Desktop\codyssey01> docker run -d --name bind-test -p 8080:80 -v ${PWD}\app:/usr/share/nginx/html nginx
@@ -342,3 +372,21 @@ credential.https://dev.azure.com.usehttppath=true
 init.defaultbranch=main
 user.name=HYO66
 user.email=rlagytlr104@naver.com
+
+#Git 원격 저장소 및 push 확인 
+
+PS C:\Users\User\Desktop\codyssey01> git remote -v
+origin  https://github.com/HYO66/codyssey01.git (fetch)
+origin  https://github.com/HYO66/codyssey01.git (push)
+PS C:\Users\User\Desktop\codyssey01> git branch --show-current
+main
+PS C:\Users\User\Desktop\codyssey01> git log --oneline -n 3
+3478b36 (HEAD -> main, origin/main) fix: correct README markdown links
+4eb4f40 fix: correct README markdown links
+824110e fix: correct README markdown links
+PS C:\Users\User\Desktop\codyssey01> git push origin main
+Everything up-to-date
+PS C:\Users\User\Desktop\codyssey01>  git log --oneline -n 3
+3478b36 (HEAD -> main, origin/main) fix: correct README markdown links
+4eb4f40 fix: correct README markdown links
+824110e fix: correct README markdown links

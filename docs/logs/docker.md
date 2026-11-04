@@ -125,4 +125,77 @@ c744ab8e6f45   practice-image   "bash"                   45 hours ago   Exited (
 PS C:\Users\User\Desktop\codyssey01> docker stats --no-stream
 CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O         PIDS
 c6be1ad38fe6   vol-test2   0.00%     1.559MiB / 7.605GiB   0.02%     872B / 126B     139kB / 4.1kB     1
-17e7228d1122   mynginx     0.00%     7.473MiB / 7.605GiB   0.10%     12kB / 6.43kB   9.03MB / 12.3kB   9
+17e7228d1122   mynginx     0.00%     7.473MiB / 7.605GiB   0.10%     12kB / 6.43kB   9.03MB / 12.3kB   9  
+  
+
+- `docker --version` 결과에서 Docker 버전이 정상 출력되는 것을 확인했다.
+- `docker info`에서 `Server` 섹션과 컨테이너 수 정보가 표시되어 Docker 데몬이 정상 실행 중임을 확인했다.
+- 즉, 단순 설치만 된 상태가 아니라 실제 Docker 서비스가 동작 중인 환경임을 점검했다.
+
+
+Docker 컨테이너 삭제(정리) 명령 및 결과  
+참고: 아래 목록에는 이전 실습에서 생성한 다른 테이터가 포함되어 있음  
+
+PS C:\Users\User\Desktop\practice\pr1> docker create --name temp-cleanup hello-world
+e58e84a4535e1082ce973da2c94d82d36454558f283bdc8d545a75bd6fdee7fb
+PS C:\Users\User\Desktop\practice\pr1> docker ps -a
+CONTAINER ID   IMAGE            COMMAND                  CREATED         STATUS                    PORTS     NAMES
+e58e84a4535e   hello-world      "/hello"                 8 seconds ago   Created                             temp-cleanup
+76466708e499   ubuntu           "sleep infinity"         2 days ago      Exited (137) 2 days ago             vol-test2
+551abed4ae1f   nginx            "/docker-entrypoint.…"   3 days ago      Exited (0) 2 days ago               bind-test
+d954290deab8   my-nginx:1.0     "/docker-entrypoint.…"   3 days ago      Exited (0) 2 days ago               my-nginx-web
+c475a98fdd1d   ubuntu           "bash"                   3 days ago      Exited (0) 3 days ago               ubuntu-test
+a373480e6969   hello-world      "/hello"                 3 days ago      Exited (0) 3 days ago               hello-test
+c744ab8e6f45   practice-image   "bash"                   4 days ago      Exited (0) 4 days ago               beautiful_murdock
+PS C:\Users\User\Desktop\practice\pr1> docker rm temp-cleanup
+temp-cleanup
+PS C:\Users\User\Desktop\practice\pr1> docker ps -a
+CONTAINER ID   IMAGE            COMMAND                  CREATED      STATUS                    PORTS     NAMES
+76466708e499   ubuntu           "sleep infinity"         2 days ago   Exited (137) 2 days ago             vol-test2
+551abed4ae1f   nginx            "/docker-entrypoint.…"   3 days ago   Exited (0) 2 days ago               bind-test
+d954290deab8   my-nginx:1.0     "/docker-entrypoint.…"   3 days ago   Exited (0) 2 days ago               my-nginx-web
+c475a98fdd1d   ubuntu           "bash"                   3 days ago   Exited (0) 3 days ago               ubuntu-test
+a373480e6969   hello-world      "/hello"                 3 days ago   Exited (0) 3 days ago               hello-test
+c744ab8e6f45   practice-image   "bash"                   4 days ago   Exited (0) 4 days ago               beautiful_murdock
+
+결과: temp-cleanup hello-world가 성공적으로 삭제 되었음.
+
+
+Docker 이미지 삭제(정리) 명령 및 결과
+참고: 아래 목록에는 이전 실습에서 생성한 다른 데이터가 포함되어 있음  
+
+PS C:\Users\User\Desktop\practice\pr1> docker images
+                                                                           i Info →   U  In Use
+IMAGE                   ID             DISK USAGE   CONTENT SIZE   EXTRA
+hello-world:latest      c567b231f656       25.9kB         9.49kB    U
+my-nginx:1.0            32d72b76e6d8       93.6MB         26.3MB    U
+nginx:latest            5ab5b0b01097        243MB         66.8MB    U
+practice-image:latest   a0fe27f1358d        265MB         87.6MB    U
+ubuntu:latest           6a06111c3b0a        163MB         45.9MB    U
+PS C:\Users\User\Desktop\practice\pr1> docker ps -a
+CONTAINER ID   IMAGE            COMMAND                  CREATED      STATUS                    PORTS     NAMES
+76466708e499   ubuntu           "sleep infinity"         2 days ago   Exited (137) 2 days ago             vol-test2
+551abed4ae1f   nginx            "/docker-entrypoint.…"   3 days ago   Exited (0) 3 days ago               bind-test
+d954290deab8   my-nginx:1.0     "/docker-entrypoint.…"   3 days ago   Exited (0) 3 days ago               my-nginx-web
+c475a98fdd1d   ubuntu           "bash"                   3 days ago   Exited (0) 3 days ago               ubuntu-test
+a373480e6969   hello-world      "/hello"                 3 days ago   Exited (0) 3 days ago               hello-test
+c744ab8e6f45   practice-image   "bash"                   4 days ago   Exited (0) 4 days ago               beautiful_murdock
+PS C:\Users\User\Desktop\practice\pr1> docker rm a373480e6969
+a373480e6969
+PS C:\Users\User\Desktop\practice\pr1> docker ps -a
+CONTAINER ID   IMAGE            COMMAND                  CREATED      STATUS                    PORTS     NAMES
+76466708e499   ubuntu           "sleep infinity"         2 days ago   Exited (137) 2 days ago             vol-test2
+551abed4ae1f   nginx            "/docker-entrypoint.…"   3 days ago   Exited (0) 3 days ago               bind-test
+d954290deab8   my-nginx:1.0     "/docker-entrypoint.…"   3 days ago   Exited (0) 3 days ago               my-nginx-web
+c475a98fdd1d   ubuntu           "bash"                   3 days ago   Exited (0) 3 days ago               ubuntu-test
+c744ab8e6f45   practice-image   "bash"                   4 days ago   Exited (0) 4 days ago               beautiful_murdock
+PS C:\Users\User\Desktop\practice\pr1> docker rmi hello-world
+Untagged: hello-world:latest
+Deleted: sha256:c567b231f65614688711a75f31518a064258a51d442117a3e771a3a8fdba78ef
+PS C:\Users\User\Desktop\practice\pr1> docker images
+                                                                           i Info →   U  In Use
+IMAGE                   ID             DISK USAGE   CONTENT SIZE   EXTRA
+my-nginx:1.0            32d72b76e6d8       93.6MB         26.3MB    U
+nginx:latest            5ab5b0b01097        243MB         66.8MB    U
+practice-image:latest   a0fe27f1358d        265MB         87.6MB    U
+ubuntu:latest           6a06111c3b0a        163MB         45.9MB    U
