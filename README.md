@@ -28,9 +28,9 @@
 
 ---
 
-터미널 기본 조작 로그
+1.터미널 기본 조작 로그
 
-상세 로그: [docs/logs/terminal.md](docs/logs/terminal.md)
+상세 로그: [docs/logs/terminal.md]
 
 실행한 주요 명령:
 ```powershell
@@ -46,9 +46,9 @@ Move-Item copy.txt renamed.txt
 Set-Location ..
 Remove-Item cli-test -Recurse -Force
 
-권한 실습 로그
+2.권한 실습 로그
 
-상세 로그: [docs/logs/terminal.md](docs/logs/terminal.md)
+상세 로그: [docs/logs/terminal.md]
 
 실행한 주요 명령:
 ```Ubuntu
@@ -74,9 +74,9 @@ x = 실행
 644 = 소유자 rw-, 그룹 r--, 기타 r--
 755 = 소유자 rwx, 그룹 r-x, 기타 r-x
 
-Docker 설치/점검 로그
+3.Docker 설치/점검 로그
 
-상세 로그: docs/logs/docker.md
+상세 로그: [docs/logs/docker.md]
 
 실행한 주요 명령:
 ```powershell
@@ -86,9 +86,9 @@ docker images
 docker ps
 docker ps -a
 
-hello-world / ubuntu 실습 로그
+4.hello-world / ubuntu 실습 로그
 
-상세 로그: [docs/logs/terminal.md](docs/logs/terminal.md)
+상세 로그: [docs/logs/terminal.md]
 
 실행한 주요 명령:
 ```powershell
@@ -103,9 +103,9 @@ attach: 실행 중인 컨테이너의 기본 프로세스에 직접 붙음
 exec: 실행 중인 컨테이너 안에서 새 명령을 실행함
 실습에서는 exec가 관리와 디버깅에 더 편리했음
 
-Dockerfile 기반 커스텀 이미지 제작 / 포트매핑 접속 확인
+5.Dockerfile 기반 커스텀 이미지 제작 / 포트매핑 접속 확인
 
-상세 로그: [docs/logs/terminal.md](docs/logs/terminal.md)
+상세 로그: [docs/logs/terminal.md]
 
 실행한 주요 명령:
 ```powershell
@@ -113,7 +113,7 @@ docker build -t my-nginx:1.0 .
 docker run -d --name my-nginx-web -p 8080:80 my-nginx:1.0
 docker ps
 docker logs my-nginx-web
-http://localhost:8080
+http://localhost:8080[docs/images/포트매핑.png]
 
 *포트충돌 문제 해결
  >처음에는 아래 명령으로 실행을 시도.
@@ -130,9 +130,9 @@ http://localhost:8080
   docker run -d --name my-nginx-web -p 8080:80 my-nginx:1.0
 
 
-바인드 마운트 반영 확인
+6.바인드 마운트 반영 확인
 
-상세 로그: [docs/logs/terminal.md](docs/logs/terminal.md)
+상세 로그: [docs/logs/terminal.md]
 
 실행한 주요 명령:
 ```powershell
@@ -154,9 +154,9 @@ docker run -d --name bind-test -p 8082:80 -v ${PWD}\app:/usr/share/nginx/html ng
   docker run -d --name bind-test -p 8082:80 -v ${PWD}\app:/usr/share/nginx/html nginx
 
 
-Docker 볼륨 영속성 확인
+7.Docker 볼륨 영속성 확인
 
-상세 로그: [docs/logs/terminal.md](docs/logs/terminal.md)
+상세 로그: [docs/logs/terminal.md]
 
 실행한 주요 명령: 
 ```powershell
@@ -167,9 +167,9 @@ docker rm -f vol-test
 docker run -d --name vol-test2 -v mydata:/data ubuntu sleep infinity
 docker exec -it vol-test2 bash -lc "cat /data/hello.txt"
 
-Git연동 확인
+8.Git연동 확인
 
-상세 로그: [docs/logs/terminal.md](docs/logs/terminal.md)
+상세 로그: [docs/logs/terminal.md]
 
 실행한 주요 명령:
 ```powershell
@@ -178,9 +178,10 @@ git config --global user.email
 git config --global init.defaultBranch
 git config --list
 
-GitHub/VSCode 연동
+9.GitHub/VSCode 연동
 
-!!!!스크린샷 링크하기
+[docs/images/github저장소연동.png]
+[docs/images/vscode연동.png]
 
 **트러블 슈팅
 
